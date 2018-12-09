@@ -38,7 +38,8 @@ public class Palindrom {
                             a = y;
                             b = ++z;
                             System.out.println(base.substring(a, b));
-                            System.out.println("linia 41 return"); return base.substring(a, b);
+                            System.out.println("linia 41 return");
+                            return base.substring(a, b);
                         } else {
                             a = y--;
                         }
@@ -53,13 +54,13 @@ public class Palindrom {
                         if (b == tabLength) {
                             return base.substring(a, b);
                         }
-                        System.out.println("-=-=-=-=-=-=-=-=-przed końcem while");
+//                        System.out.println("-=-=-=-=-=-=-=-=-przed końcem while");
                     }
-                    System.out.println("-------------------po while Y i Z");
+//                    System.out.println("-------------------po while Y i Z");
                 }
-                System.out.println("++++++++++++++++++++++++po while W, w = " + w);
+//                System.out.println("++++++++++++++++++++++++po while W, w = " + w);
             }
-            System.out.println("-=-=-=-=- po elsie -=-=-=-=-=-");
+//            System.out.println("-=-=-=-=- po elsie -=-=-=-=-=-");
         }
         if(a==0 && b==0){
             System.out.println(palindrom);
