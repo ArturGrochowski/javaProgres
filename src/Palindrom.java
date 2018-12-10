@@ -1,3 +1,4 @@
+import java.util.ArrayList;
 import java.util.Scanner;
 
 public class Palindrom {
@@ -10,7 +11,6 @@ public class Palindrom {
 
     static boolean isTrue (String word){
         if(word.equals("stop")){
-            System.out.println("See you soon! :) ");
             return false;
         }else{
             return true;
@@ -32,7 +32,6 @@ public class Palindrom {
             }else{
                 while (w<tabLength-1) {
                     w++;
-//                    System.out.println("POCZĄTEK while w = " + w);
                     while (tabLetter[y].equals(tabLetter[z])) {
                         if (y == 0) {
                             a = y;
@@ -57,24 +56,22 @@ public class Palindrom {
                             System.out.println(base.substring(a, b));
                             return base.substring(a, b);
                         }
-//                        System.out.println("-=-=-=-=-=-=-=-=-przed końcem while");
                     }
-//                    System.out.println("KONIEC while w = " + w);
                 }
-//                System.out.println("++++++++++++++++++++++++po while W, w = " + w);
             }
-//            System.out.println("-=-=-=-=- po elsie -=-=-=-=-=-");
         }
         if(a==0 && b==0){
             System.out.println(palindrom);
-            return null;
+            return "";
         }else {
             return base.substring(a, b);
         }
     }
 
+
     public static void main(String[] args) {
         System.out.println("Write some random letters.");
+        ArrayList<String> arrayList = new ArrayList<>(1);
         Scanner sc = new Scanner(System.in);
         String base = sc.nextLine();
         while(isTrue(base)){
@@ -82,11 +79,24 @@ public class Palindrom {
             for (int i = 0; i < tabLetters.length; i++) {
                 tabLetters[i] = singleNextLetter(base, i);
             }
-            palindrom(tabLetters, base);
+            arrayList.add(palindrom(tabLetters, base));
+//            palindrom(tabLetters, base);
+
             System.out.println("Write next word.");
             base = sc.nextLine();
 
         }
+        while(arrayList.size()>1){
+            String s1 = arrayList.get(0);
+            String s2 = arrayList.get(1);
+            if(s1.length()>s2.length()){
+                arrayList.remove(1);
+            } else {
+                arrayList.remove(0);
+            }
+        }
+        System.out.println("The longest palindrom is: " + arrayList.get(0));
         sc.close();
+        System.out.println("See you soon! :) ");
     }
 }
