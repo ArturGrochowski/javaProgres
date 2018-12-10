@@ -6,7 +6,7 @@ public class TestMain {
             butelk[i] = new WaterBottle(liters);
         }
         for(WaterBottle b : butelk){
-            System.out.println(b.getIleLitrow());
+            System.out.println(b.getSize());
         }
 
     }

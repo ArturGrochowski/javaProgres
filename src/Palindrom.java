@@ -32,14 +32,13 @@ public class Palindrom {
             }else{
                 while (w<tabLength-1) {
                     w++;
-                    System.out.println("POCZĄTEK while w = " + w);
+//                    System.out.println("POCZĄTEK while w = " + w);
                     while (tabLetter[y].equals(tabLetter[z])) {
                         if (y == 0) {
                             a = y;
-                            b = ++z;
-                            System.out.println(base.substring(a, b));
-                            System.out.println("linia 41 return");
-                            return base.substring(a, b);
+//                            b = ++z;
+//                            System.out.println("linia 41 return = " + base.substring(a, b));
+//                            return base.substring(a, b);
                         } else {
                             a = y--;
                         }
@@ -47,22 +46,24 @@ public class Palindrom {
                             b = z + 1;
                             System.out.println(base.substring(a, b));
                             return base.substring(a, b);
-                        } else {
+                        } else if (b<tabLetter.length){
                             b = ++z;
                         }
-                        System.out.println(base.substring(a, b));
-                        palindrom = base.substring(a, b);
+                        if (b != tabLength) {
+                            System.out.println(base.substring(a, b));
+                            palindrom = base.substring(a, b);
+                        }
                         if (b == tabLength) {
                             System.out.println(base.substring(a, b));
                             return base.substring(a, b);
                         }
-                        System.out.println("-=-=-=-=-=-=-=-=-przed końcem while");
+//                        System.out.println("-=-=-=-=-=-=-=-=-przed końcem while");
                     }
-                    System.out.println("KONIEC while w = " + w);
+//                    System.out.println("KONIEC while w = " + w);
                 }
-                System.out.println("++++++++++++++++++++++++po while W, w = " + w);
+//                System.out.println("++++++++++++++++++++++++po while W, w = " + w);
             }
-            System.out.println("-=-=-=-=- po elsie -=-=-=-=-=-");
+//            System.out.println("-=-=-=-=- po elsie -=-=-=-=-=-");
         }
         if(a==0 && b==0){
             System.out.println(palindrom);
