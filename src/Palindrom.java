@@ -80,11 +80,8 @@ public class Palindrom {
                 tabLetters[i] = singleNextLetter(base, i);
             }
             arrayList.add(palindrom(tabLetters, base));
-//            palindrom(tabLetters, base);
-
             System.out.println("Write next word.");
             base = sc.nextLine();
-
         }
         while(arrayList.size()>1){
             String s1 = arrayList.get(0);
