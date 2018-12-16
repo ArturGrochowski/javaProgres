@@ -1,7 +1,13 @@
 package inheritance.monsters;
 
-public class Monster {
+public class Monster implements IActions {
     String name = "Monster";
+
+    @Override
+    public String showName(){
+        System.out.println("monster: " + name);
+        return name;
+    }
 
     public String getName(){
         return name;

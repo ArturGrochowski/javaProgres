@@ -1,12 +1,18 @@
 package inheritance.monsters;
 
-public class Skeleton extends Monster{
-    String Name = "Skeleton";
+public class Skeleton extends Monster implements IActions {
+    String name = "Skeleton";
     String weapon;
 
     @Override
+    public String showName() {
+        System.out.println("Skleleton: " + name);
+        return name;
+    }
+
+    @Override
     public String getName() {
-        return Name;
+        return name;
     }
 
     public Skeleton() {

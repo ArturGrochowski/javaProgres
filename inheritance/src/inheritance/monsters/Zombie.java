@@ -1,7 +1,13 @@
 package inheritance.monsters;
 
-public class Zombie extends Monster{
+public class Zombie extends Monster implements IActions {
     String name = "Zombie";
+
+    @Override
+    public String showName() {
+        System.out.println("Zombie: " + name);
+        return name;
+    }
 
     @Override
     public String getName() {
