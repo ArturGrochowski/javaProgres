@@ -1,28 +1,26 @@
 public class FinalAccount {
     private double balance;
+    private int id;
 
-    public FinalAccount(double balance) {
+    public FinalAccount(double balance, int id) {
         this.balance = balance;
+        this.id = id;
     }
 
     public double getBalance() {
         return this.balance;
     }
-    public void createAccount(final double interestRate) { //because of final this parameter is accesible inside Interest class
-        class Interest{
 
-            public Interest (double interest){
-                this.interest = interest;
-                this.changeBalace(); // it take final double interesrRate parameter
+    public void createAccount(final double interestRate, double percent) {
+        class Interest{
+            public Interest (){
+                this.changeBalace(); //because this class/constructor is inside method it has direct access to method parameters.
             }
-            void changeBalace(){ // it take final double interesrRate parameter
-                double increase = (balance * interestRate)/100;
+            void changeBalace(){ //those parameter are used below:
+                double increase = (balance * interestRate)/percent;
                 balance += increase;
             }
-            private double interest;
         }
-        Interest interest = new Interest(interestRate);
-
+        Interest interest = new Interest(); // bedause of final argument in createAccount method
     }
-
 }
