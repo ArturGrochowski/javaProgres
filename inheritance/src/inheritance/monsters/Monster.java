@@ -5,7 +5,7 @@ public class Monster implements IActions {
 
     @Override
     public String showName(){
-        System.out.println("monster: " + name);
+        System.out.println("Monster name: " + name);
         return name;
     }
 
@@ -34,12 +34,12 @@ public class Monster implements IActions {
     }
 
     public Monster(){
-        System.out.println("Default constructor from Monster class");
+//        System.out.println("Default constructor from Monster class");
     }
 
     public Monster(double walkSpeed, double hitPoint){
         setWalkSpeed(walkSpeed); // whith no setters would be: this.walkSpeed = walkSpeed;
         setHitPoint(hitPoint);
-        System.out.println("Non-default constructor form Monster class");
+//        System.out.println("Non-default constructor form Monster class");
     }
 }

@@ -6,7 +6,7 @@ public class Skeleton extends Monster implements IActions {
 
     @Override
     public String showName() {
-        System.out.println("Skleleton: " + name);
+        System.out.println("Skleleton name: " + name);
         return name;
     }
 
@@ -16,19 +16,19 @@ public class Skeleton extends Monster implements IActions {
     }
 
     public Skeleton() {
-        System.out.println("Default constructor form Skeleton class");
+//        System.out.println("Default constructor form Skeleton class");
     }
 
     public Skeleton(double walkSpeed, double hitPoint) {
         super(walkSpeed, hitPoint);
-        System.out.println("Non-default constructor form Skeleton class");
+//        System.out.println("Non-default constructor form Skeleton class");
 
     }
 
     public Skeleton(double walkSpeed, double hitPoint, String weapon) {
         super(walkSpeed, hitPoint);
         this.weapon = weapon;
-        System.out.println("Non-default constructor form Skeleton class");
+//        System.out.println("Non-default constructor form Skeleton class");
 
     }
     @Override

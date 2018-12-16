@@ -5,7 +5,7 @@ public class Zombie extends Monster implements IActions {
 
     @Override
     public String showName() {
-        System.out.println("Zombie: " + name);
+        System.out.println("Zombie name: " + name);
         return name;
     }
 
@@ -15,11 +15,11 @@ public class Zombie extends Monster implements IActions {
     }
 
     public Zombie() {
-        System.out.println("Default constructor form Zombie class");
+//        System.out.println("Default constructor form Zombie class");
     }
 
     public Zombie(double walkSpeed, double hitPoint) {
         super(walkSpeed, hitPoint);
-        System.out.println("Non-default constructor form Zombie class");
+//        System.out.println("Non-default constructor form Zombie class");
     }
 }
