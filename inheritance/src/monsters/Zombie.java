@@ -1,4 +1,4 @@
-package inheritance.monsters;
+package monsters;
 
 public class Zombie extends Monster implements IActions {
     String name = "Zombie";

@@ -1,9 +1,9 @@
-package inheritance.main;
+package main;
 
-import inheritance.monsters.Monster;
-import inheritance.monsters.IActions;
-import inheritance.monsters.Skeleton;
-import inheritance.monsters.Zombie;
+import monsters.Monster;
+import monsters.IActions;
+import monsters.Skeleton;
+import monsters.Zombie;
 
 public class Main{
     public static void main(String[] args) {

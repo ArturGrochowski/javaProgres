@@ -1,4 +1,4 @@
-package inheritance.monsters;
+package monsters;
 
 public interface IActions {
     String showName();
