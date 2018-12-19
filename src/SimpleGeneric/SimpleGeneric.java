@@ -1,3 +1,5 @@
+package SimpleGeneric;
+
 class SimpleGeneric<Bbb, y> {
 
     //declaration of object type T

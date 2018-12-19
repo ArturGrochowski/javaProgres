@@ -1,8 +1,10 @@
+package WatterBottle;
+
 public class WaterBottle {
     private double size;
     private double maxSize = 5.0;
 
-    public  WaterBottle(){
+    public WaterBottle(){
         System.out.println("Konstrukto domyślny WaterBottle");
     }
 
@@ -37,7 +39,7 @@ public class WaterBottle {
     }
 
     public static void main(String[] args) {
-        WaterBottle[] bottle = new  WaterBottle[10];
+        WaterBottle[] bottle = new WaterBottle[10];
         for(int i = 0; i<bottle.length; i++){
             bottle[i] = new WaterBottle(Math.round(Math.random() * 100.0)/10.0);
             }

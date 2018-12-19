@@ -1,4 +1,6 @@
-public class TestMain {
+package WatterBottle;
+
+public class MainWaterBottle {
     public static void main(String[] args) {
         WaterBottle[] butelk = new WaterBottle[10];
         for(int i = 0; i<butelk.length; i++){

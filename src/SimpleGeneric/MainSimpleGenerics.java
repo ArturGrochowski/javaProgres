@@ -1,6 +1,8 @@
+package SimpleGeneric;
+
 import java.lang.reflect.Array;
 
-public class MySimpleGenerics {
+public class MainSimpleGenerics {
 
     public static void main(String[] arg){
 
