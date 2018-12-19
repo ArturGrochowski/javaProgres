@@ -5,7 +5,7 @@ import monsters.IActions;
 import monsters.Skeleton;
 import monsters.Zombie;
 
-public class Main{
+public class MainInherit {
     public static void main(String[] args) {
         IActions[] nameTab = new IActions[4];
 //        System.out.println("Making Monster with 2 arguments:");
