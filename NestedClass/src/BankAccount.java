@@ -22,4 +22,5 @@ public class BankAccount {
             balance += increase;
         }
     }
+
 }

@@ -16,7 +16,7 @@ public class FinalAccount {
             public Interest (){
                 this.changeBalace(); //because this class/constructor is inside method it has direct access to method parameters.
             }
-            void changeBalace(){ //those parameter are used below:
+            void changeBalace(){ //those parameters are used below:
                 double increase = (balance * interestRate)/percent;
                 balance += increase;
             }
