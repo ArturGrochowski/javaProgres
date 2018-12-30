@@ -3,25 +3,20 @@ import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-public class Events extends JFrame {
-    public Events(){
+class Events extends JFrame {
+    Events(){
         super("Events");
         this.setBounds(300,300,300,300);
         initComponents();
         this.setDefaultCloseOperation(3);
     }
-    public void buttonBuilder(String name, Color color){
+    private void buttonBuilder(String name, Color color){
         JButton button = new JButton(name);
         panel.add(button);
-        button.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                panel.setBackground(color);
-            }
-        });
+        button.addActionListener(e -> panel.setBackground(color));
     }
 
-    public void initComponents(){
+    private void initComponents(){
         JButton heyColor = new JButton("Heya! :)");
         heyColor.addActionListener(new ActListener(Color.yellow));
         panel.add(heyColor);
