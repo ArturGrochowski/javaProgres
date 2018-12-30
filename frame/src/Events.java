@@ -10,24 +10,27 @@ public class Events extends JFrame {
         initComponents();
         this.setDefaultCloseOperation(3);
     }
+    public void buttonBuilder(String name, Color color){
+        JButton button = new JButton(name);
+        panel.add(button);
+        button.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                panel.setBackground(color);
+            }
+        });
+    }
 
     public void initComponents(){
-        JButton redColor = new JButton("Red");
-        JButton whiteColor = new JButton("White");
-        JButton greenColor = new JButton("Green");
-        JButton blueColor = new JButton("Blue");
         JButton heyColor = new JButton("Heya! :)");
-        redColor.addActionListener(new ActListener(Color.red));
-        whiteColor.addActionListener(new ActListener(Color.white));
-        greenColor.addActionListener(new ActListener(Color.green));
-        blueColor.addActionListener(new ActListener(Color.blue));
         heyColor.addActionListener(new ActListener(Color.yellow));
-        panel.add(redColor);
-        panel.add(whiteColor);
-        panel.add(greenColor);
-        panel.add(blueColor);
         panel.add(heyColor);
         this.getContentPane().add(panel);
+        buttonBuilder("Black", Color.black);
+        buttonBuilder("White", Color.white);
+        buttonBuilder("Red", Color.red);
+        buttonBuilder("Green", Color.green);
+        buttonBuilder("Blue", Color.blue);
     }
 
     JPanel panel = new JPanel();
