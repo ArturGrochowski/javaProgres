@@ -10,11 +10,7 @@ class Events extends JFrame {
         initComponents();
         this.setDefaultCloseOperation(3);
     }
-    private void buttonBuilder(String name, Color color){
-        JButton button = new JButton(name);
-        panel.add(button);
-        button.addActionListener(e -> panel.setBackground(color));
-    }
+
 
     private void initComponents(){
         JButton heyColor = new JButton("Heya! :)");
@@ -28,7 +24,15 @@ class Events extends JFrame {
         buttonBuilder("Blue", Color.blue);
     }
 
+
+    private void buttonBuilder(String name, Color color){
+        JButton button = new JButton(name);
+        panel.add(button);
+        button.addActionListener(e -> panel.setBackground(color));
+    }
+
     JPanel panel = new JPanel();
+
 
     private class ActListener implements ActionListener {
         Color color;
