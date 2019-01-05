@@ -36,15 +36,10 @@ public class Clock extends JFrame {
             }
         });
 
-        makeButtonSize("size 10", 10);
-        makeButtonSize("siez 15", 15);
-        makeButtonSize("size 20", 20);
-
-        JButton b1 = new MakeButton().makeButtonS("b1", 40, testLable);
-        JPanel panelB1 = new JPanel();
-        this.getContentPane().add(panelB1, BorderLayout.EAST);
-        panelB1.add(testLable);
-        panelB1.add(b1);
+        new MakeButton().makeButtonSize("Size 10", 10, panel2, buttonGrSize, lable);
+        new MakeButton().makeButtonSize("Size 15", 15, panel2, buttonGrSize, lable);
+        new MakeButton().makeButtonSize("Size 20", 20, panel2, buttonGrSize, lable);
+        new MakeButton().makeButtonColor("Color", lable, panel);
 
         buttonGrSize.add(radioButtonS);
         buttonGrSize.add(radioButtonM);
@@ -60,18 +55,6 @@ public class Clock extends JFrame {
         radioButtonM.doClick();
 
 //        pack();
-    }
-
-    public void makeButtonSize (String name, int size){
-        JButton button = new JButton(name);
-        button.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                lable.setFont(new Font("Monospace", Font.PLAIN, size));
-            }
-        });
-        buttonGrSize.add(button);
-        panel2.add(button);
     }
 
 
