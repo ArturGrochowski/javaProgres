@@ -20,34 +20,12 @@ public class Clock extends JFrame {
 
         ActionListener watch = new ClockListener();
 
-        JRadioButton radioButtonS = new JRadioButton("Hide");
-        JRadioButton radioButtonM = new JRadioButton("Show", true); //the "true" doesn't "doClick();", just setting the default position
-
-        radioButtonS.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                timeLable.setVisible(false);
-                time.setVisible(false);
-            }
-        });
-        radioButtonM.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                timeLable.setVisible(true);
-                time.setVisible(true);
-            }
-        });
-
+        new MakeButton().makeRadioButton("Hide", time, timeLable, false, buttonGrSize, panelNorth);
+        new MakeButton().makeRadioButton("Show", time, timeLable, true, buttonGrSize, panelNorth);
         new MakeButton().makeButtonSize("Size 10", 10, panelCenter, buttonGrSize, timeLable);
         new MakeButton().makeButtonSize("Size 15", 15, panelCenter, buttonGrSize, timeLable);
         new MakeButton().makeButtonSize("Size 20", 20, panelCenter, buttonGrSize, timeLable);
         new MakeButton().makeButtonColor("Color", timeLable, panelPageEnd);
-
-        buttonGrSize.add(radioButtonS);
-        buttonGrSize.add(radioButtonM);
-
-        panelNorth.add(radioButtonS);
-        panelNorth.add(radioButtonM);
 
         this.getContentPane().add(panelPageEnd, BorderLayout.PAGE_END);
         this.getContentPane().add(panelNorth, BorderLayout.NORTH);
@@ -55,7 +33,6 @@ public class Clock extends JFrame {
         this.getContentPane().add(panel, BorderLayout.EAST);
         Timer timer = new Timer(1000, watch);
         timer.start();
-        radioButtonM.doClick();
 
 //        pack();
     }
