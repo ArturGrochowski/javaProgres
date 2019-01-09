@@ -14,8 +14,10 @@ public class Clock extends JFrame {
     }
 
     private void initComponents() {
-        panel.add(lable);
-        panel.add(time);
+//        panelPageEnd.add(timeLable);
+        panelPageEnd.add(timeLable);
+        panelPageEnd.add(time);
+
         ActionListener watch = new ClockListener();
 
         JRadioButton radioButtonS = new JRadioButton("Hide");
@@ -24,32 +26,33 @@ public class Clock extends JFrame {
         radioButtonS.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                lable.setVisible(false);
+                timeLable.setVisible(false);
                 time.setVisible(false);
             }
         });
         radioButtonM.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                lable.setVisible(true);
+                timeLable.setVisible(true);
                 time.setVisible(true);
             }
         });
 
-        new MakeButton().makeButtonSize("Size 10", 10, panel2, buttonGrSize, lable);
-        new MakeButton().makeButtonSize("Size 15", 15, panel2, buttonGrSize, lable);
-        new MakeButton().makeButtonSize("Size 20", 20, panel2, buttonGrSize, lable);
-        new MakeButton().makeButtonColor("Color", lable, panel);
+        new MakeButton().makeButtonSize("Size 10", 10, panelCenter, buttonGrSize, timeLable);
+        new MakeButton().makeButtonSize("Size 15", 15, panelCenter, buttonGrSize, timeLable);
+        new MakeButton().makeButtonSize("Size 20", 20, panelCenter, buttonGrSize, timeLable);
+        new MakeButton().makeButtonColor("Color", timeLable, panelPageEnd);
 
         buttonGrSize.add(radioButtonS);
         buttonGrSize.add(radioButtonM);
 
-        panel1.add(radioButtonS);
-        panel1.add(radioButtonM);
+        panelNorth.add(radioButtonS);
+        panelNorth.add(radioButtonM);
 
-        this.getContentPane().add(panel, BorderLayout.PAGE_END);
-        this.getContentPane().add(panel1, BorderLayout.NORTH);
-        this.getContentPane().add(panel2, BorderLayout.CENTER);
+        this.getContentPane().add(panelPageEnd, BorderLayout.PAGE_END);
+        this.getContentPane().add(panelNorth, BorderLayout.NORTH);
+        this.getContentPane().add(panelCenter, BorderLayout.CENTER);
+        this.getContentPane().add(panel, BorderLayout.EAST);
         Timer timer = new Timer(1000, watch);
         timer.start();
         radioButtonM.doClick();
@@ -58,12 +61,12 @@ public class Clock extends JFrame {
     }
 
 
+    JPanel panelPageEnd = new JPanel();
+    JPanel panelNorth = new JPanel();
+    JPanel panelCenter = new JPanel();
     JPanel panel = new JPanel();
-    JPanel panel1 = new JPanel();
-    JPanel panel2 = new JPanel();
-    JLabel lable = new JLabel("Time: ");
+    JLabel timeLable = new JLabel("Time: ");
     JLabel time = new JLabel(getTime());
-    JLabel testLable = new JLabel();
     ButtonGroup buttonGrSize = new ButtonGroup(); // this group make one choice from all added buttons possible.
 
     private class ClockListener implements ActionListener {
