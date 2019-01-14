@@ -24,9 +24,9 @@ public class Clock extends JFrame {
 
         new MakeButton().makeRadioButton("Hide", time, timeLable, false, buttonGrSize, panelNorth);
         new MakeButton().makeRadioButton("Show", time, timeLable, true, buttonGrSize, panelNorth);
-        new MakeButton().makeButtonSize("Size 10", 10, panelCenter, buttonGrSize, timeLable);
-        new MakeButton().makeButtonSize("Size 15", 15, panelCenter, buttonGrSize, timeLable);
-        new MakeButton().makeButtonSize("Size 20", 20, panelCenter, buttonGrSize, timeLable);
+        new MakeButton().makeButtonSize("Size 10", 10, panelCenter, buttonGrSize, lable);
+        new MakeButton().makeButtonSize("Size 15", 15, panelCenter, buttonGrSize, lable);
+        new MakeButton().makeButtonSize("Size 20", 20, panelCenter, buttonGrSize, lable);
         new MakeButton().makeButtonColor("Color", lable, panelCenter);
         JCheckBox bold = new JCheckBox("Bold");
         JCheckBox italic = new JCheckBox("Italic");

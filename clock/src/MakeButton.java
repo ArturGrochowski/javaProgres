@@ -44,4 +44,16 @@ public class MakeButton {
         });
         panle.add(button).setBackground(Color.cyan);
     }
+   /* int style = Font.PLAIN;
+    public void makeCheckBoxButton (String name, JLabel lable, JPanel panelNorth, int font){
+        JCheckBox boxButton = new JCheckBox(name);
+        boxButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                if(boxButton.isSelected()) style += font;
+                lable.setFont(new Font("Arial", style, 12));
+            }
+        });
+        panelNorth.add(boxButton);
+    }*/
 }
