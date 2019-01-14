@@ -37,7 +37,6 @@ public class Clock extends JFrame {
 
             @Override
             public void actionPerformed(ActionEvent e) {
-                System.out.println("Akcja");
                 int style = Font.PLAIN;
                 if(bold.isSelected()) style += Font.BOLD;
                 if(italic.isSelected()) style += Font.ITALIC;
