@@ -3,6 +3,9 @@ import java.awt.*;
 import java.awt.event.KeyEvent;
 
 public class myMenu extends JFrame {
+
+    static int i = 1000;
+
     public myMenu(){
         initCompponent();
     }
@@ -22,7 +25,6 @@ public class myMenu extends JFrame {
         panelMenu.add(menu3);
 
     }
-    static int i = 1000;
 
 //    public static void keyPressedHandler(KeyEvent e, JPanel panelMenu) {
 //
