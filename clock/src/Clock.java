@@ -32,7 +32,7 @@ public class Clock extends JFrame {
         JCheckBox italic = new JCheckBox("Italic");
         panelNorth.add(bold);
         panelNorth.add(italic);
-        lable.setFont(new Font("Arial", Font.PLAIN, 12));
+        lable.setFont(new Font("Arial", Font.PLAIN, lable.getFont().getSize()));
         class ChackBoxHandler implements ActionListener{
 
             @Override
@@ -40,7 +40,7 @@ public class Clock extends JFrame {
                 int style = Font.PLAIN;
                 if(bold.isSelected()) style += Font.BOLD;
                 if(italic.isSelected()) style += Font.ITALIC;
-                lable.setFont(new Font("Arial", style, 12));
+                lable.setFont(new Font(lable.getFont().getFamily(), style, lable.getFont().getSize()));
             }
         }
         ActionListener boxListener = new ChackBoxHandler();
