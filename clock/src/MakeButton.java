@@ -24,7 +24,7 @@ public class MakeButton {
         button.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                lable.setFont(new Font("Monospace", Font.PLAIN, size));
+                lable.setFont(new Font("Monospaced", lable.getFont().getStyle(), size));
             }
         });
         panel.add(button);
