@@ -26,6 +26,8 @@ public class myMenu extends JFrame {
 
     }
 
+    private Container container = this.getContentPane();
+    private JPanel panelMenu = new JPanel();
 //    public static void keyPressedHandler(KeyEvent e, JPanel panelMenu) {
 //
 //        int menuLength = panelMenu.getComponentCount();
@@ -39,6 +41,4 @@ public class myMenu extends JFrame {
 //        }
 //    }
 
-    private Container container = this.getContentPane();
-    private JPanel panelMenu = new JPanel();
 }
