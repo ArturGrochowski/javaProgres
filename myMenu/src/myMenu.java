@@ -1,10 +1,9 @@
 import javax.swing.*;
 import java.awt.*;
-import java.awt.event.KeyEvent;
 
 public class myMenu extends JFrame {
 
-    static int i = 1000;
+    static int i = 0;
 
     public myMenu(){
         initCompponent();
@@ -14,7 +13,7 @@ public class myMenu extends JFrame {
         this.setTitle(" My Menu");
         this.setBounds(300, 300, 300, 200);
         this.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
-        panelMenu.setLayout(new GridLayout(4, 1));
+        panelMenu.setLayout(new GridLayout(7, 1));
         container.add(panelMenu);
         MakeMenuButton menu1 = new MakeMenuButton("1. add", Color.lightGray, Color.orange, panelMenu);
         MakeMenuButton menu2 = new MakeMenuButton("2. remove", Color.gray, Color.red, panelMenu);
@@ -23,13 +22,19 @@ public class myMenu extends JFrame {
         panelMenu.add(menu1);
         panelMenu.add(menu2);
         panelMenu.add(menu3);
+        panelMenu.add(labe);
         panelMenu.add(textField);
+        panelMenu.add(lable2);
+        panelMenu.add(yourNumbers);
 
     }
 
     private Container container = this.getContentPane();
     private JPanel panelMenu = new JPanel();
     private JTextField textField = new JTextField();
+    private JLabel labe = new JLabel("Write a number:");
+    private  JLabel lable2 = new JLabel("Your numbers are:");
+    private  JLabel yourNumbers = new JLabel();
 
 
 //    public static void keyPressedHandler(KeyEvent e, JPanel panelMenu) {

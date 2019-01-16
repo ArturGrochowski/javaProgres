@@ -29,14 +29,20 @@ public class MakeMenuButton extends JButton implements FocusListener, ActionList
 
         int menuLength = panelMenu.getComponentCount();
         if (e.getKeyCode() == KeyEvent.VK_DOWN){
-            panelMenu.getComponent(++myMenu.i%menuLength).requestFocus();
-            System.out.println(myMenu.i);
-        } else if (e.getKeyCode() == KeyEvent.VK_UP){
-            panelMenu.getComponent(--myMenu.i%menuLength).requestFocus();
-            System.out.println(myMenu.i);
-            if (myMenu.i==0||myMenu.i==2000000000){
-                myMenu.i=1000;
+            System.out.println("down przed" + myMenu.i);
+            panelMenu.getComponent(myMenu.i++).requestFocus();
+            System.out.println("down po" + myMenu.i);
+            if (myMenu.i>=3){
+                myMenu.i=0;
             }
+        } else if (e.getKeyCode() == KeyEvent.VK_UP){
+            System.out.println("up przed" + myMenu.i);
+            panelMenu.getComponent(myMenu.i).requestFocus();
+            System.out.println("up po" + myMenu.i);
+            if(myMenu.i==0){
+                myMenu.i=3;
+            }
+            myMenu.i--;
         }
         if (e.getKeyCode() == KeyEvent.VK_ENTER){
 //            MakeMenuButton tmp = (MakeMenuButton) e.getSource(); tmp.doClick();
