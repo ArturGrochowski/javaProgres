@@ -14,7 +14,7 @@ public class myMenu extends JFrame {
         this.setTitle(" My Menu");
         this.setBounds(300, 300, 300, 200);
         this.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
-        panelMenu.setLayout(new GridLayout(3, 1));
+        panelMenu.setLayout(new GridLayout(4, 1));
         container.add(panelMenu);
         MakeMenuButton menu1 = new MakeMenuButton("1. add", Color.lightGray, Color.orange, panelMenu);
         MakeMenuButton menu2 = new MakeMenuButton("2. remove", Color.gray, Color.red, panelMenu);
@@ -23,11 +23,15 @@ public class myMenu extends JFrame {
         panelMenu.add(menu1);
         panelMenu.add(menu2);
         panelMenu.add(menu3);
+        panelMenu.add(textField);
 
     }
 
     private Container container = this.getContentPane();
     private JPanel panelMenu = new JPanel();
+    private JTextField textField = new JTextField();
+
+
 //    public static void keyPressedHandler(KeyEvent e, JPanel panelMenu) {
 //
 //        int menuLength = panelMenu.getComponentCount();
