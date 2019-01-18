@@ -18,12 +18,13 @@ public class myMenu extends JFrame {
         MakeMenuButton menu1 = new MakeMenuButton("1. add", Color.lightGray, Color.orange, panelMenu);
         MakeMenuButton menu2 = new MakeMenuButton("2. remove", Color.gray, Color.red, panelMenu);
         MakeMenuButton menu3 = new MakeMenuButton("3. change", Color.lightGray, Color.orange, panelMenu);
+        jTextField.initComponent(jTextField);
 
         panelMenu.add(menu1);
         panelMenu.add(menu2);
         panelMenu.add(menu3);
         panelMenu.add(labe);
-        panelMenu.add(textField);
+        panelMenu.add(jTextField);
         panelMenu.add(lable2);
         panelMenu.add(yourNumbers);
 
@@ -31,10 +32,13 @@ public class myMenu extends JFrame {
 
     private Container container = this.getContentPane();
     private JPanel panelMenu = new JPanel();
-    private JTextField textField = new JTextField();
+    private TextField jTextField = new TextField();
+//    private JTextField textField = new JTextField();
     private JLabel labe = new JLabel("Write a number:");
     private  JLabel lable2 = new JLabel("Your numbers are:");
     private  JLabel yourNumbers = new JLabel();
+
+
 
 
 //    public static void keyPressedHandler(KeyEvent e, JPanel panelMenu) {
