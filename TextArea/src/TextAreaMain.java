@@ -62,17 +62,27 @@ public class TextAreaMain extends JFrame {
             System.out.println(searchBegin);
 
         }
-        private int searchBegin = 0;
     }
+    private int searchBegin = 0;
+
 
     private class SwappingHandler implements ActionListener {
         @Override
         public void actionPerformed(ActionEvent e) {
-            textSwapper();
+            if(textArea.getSelectionStart()!=textArea.getSelectionEnd()) {
+                textSwapper();
+            }
+            else {
+                find.doClick();
+                if(searchBegin >=0) {
+                    textSwapper();
+                }
+            }
 
         }
 
         private void textSwapper(){
+            JOptionPane.showConfirmDialog(rootPane, "Do you wanna replace /" + findThisText.getText() + "/ for /"  + swapTheText.getText() + "/");
             textArea.replaceRange(swapTheText.getText(), textArea.getSelectionStart(), textArea.getSelectionEnd());
         }
     }
