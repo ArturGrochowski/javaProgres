@@ -3,9 +3,9 @@ import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-public class MakeButton {
+class MakeButton {
 
-    public void makeRadioButton(String name, JLabel time, JLabel timeLable, Boolean trueFalse, ButtonGroup buttonGrSize, JPanel panelNorth){
+    void makeRadioButton(String name, JLabel time, JLabel timeLable, Boolean trueFalse, ButtonGroup buttonGrSize, JPanel panelNorth){
         JRadioButton button = new JRadioButton(name);
         button.addActionListener(new ActionListener() {
             @Override
@@ -19,7 +19,7 @@ public class MakeButton {
         button.doClick();
     }
 
-    public void makeButtonSize(String name, int size, JPanel panel, ButtonGroup buttonGrSize, JLabel lable){
+    void makeButtonSize(String name, int size, JPanel panel, ButtonGroup buttonGrSize, JLabel lable){
         JButton button = new JButton(name);
         button.addActionListener(new ActionListener() {
             @Override
@@ -31,7 +31,7 @@ public class MakeButton {
         buttonGrSize.add(button);
     }
 
-    public void makeButtonColor (String name, JLabel lable, JPanel panle){
+    void makeButtonColor (String name, JLabel lable, JPanel panle){
         JButton button = new JButton(name);
         button.addActionListener(new ActionListener() {
             @Override

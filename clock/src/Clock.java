@@ -4,8 +4,8 @@ import java.awt.event.*;
 import java.util.Calendar;
 import java.util.GregorianCalendar;
 
-public class Clock extends JFrame {
-    public Clock(){
+class Clock extends JFrame {
+    Clock(){
         super("Clock");
         this.setBounds(300,300,300,200); // if I have pack() inside initComponents() I don't need to set Size of the frame, just location.
 //        this.setLocation(300,300);
@@ -82,7 +82,7 @@ public class Clock extends JFrame {
             time.setText(getTime());
         }
     }
-    public String getTime(){
+    private String getTime(){
         GregorianCalendar calendar = new GregorianCalendar();
         String h = ""+calendar.get(Calendar.HOUR_OF_DAY);
         String min = ""+calendar.get(Calendar.MINUTE);
