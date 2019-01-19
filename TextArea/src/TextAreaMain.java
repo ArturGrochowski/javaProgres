@@ -73,7 +73,7 @@ public class TextAreaMain extends JFrame {
                 textSwapper();
             }
             else {
-                find.doClick();
+                find.doClick(0);
                 if(searchBegin >=0) {
                     textSwapper();
                 }
@@ -82,8 +82,11 @@ public class TextAreaMain extends JFrame {
         }
 
         private void textSwapper(){
-            JOptionPane.showConfirmDialog(rootPane, "Do you wanna replace /" + findThisText.getText() + "/ for /"  + swapTheText.getText() + "/");
-            textArea.replaceRange(swapTheText.getText(), textArea.getSelectionStart(), textArea.getSelectionEnd());
+            textArea.requestFocus();
+            int jOptionPane = JOptionPane.showConfirmDialog(rootPane, "Do you wanna replace /" + findThisText.getText() + "/ for /"  + swapTheText.getText() + "/", "Replace warning!", JOptionPane.YES_NO_OPTION);
+            if(jOptionPane == 0) {
+                textArea.replaceRange(swapTheText.getText(), textArea.getSelectionStart(), textArea.getSelectionEnd());
+            }
         }
     }
 }
