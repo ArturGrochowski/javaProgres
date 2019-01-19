@@ -77,6 +77,7 @@ class Clock extends JFrame {
         multiPanel.add(timeLable, BorderLayout.SOUTH);
         multiPanel.add(time, BorderLayout.SOUTH);
         panelCenter.add(lable);
+
 //        panelPageEnd.add(multiPanel);
 //        panelPageEnd.add(time);
 
