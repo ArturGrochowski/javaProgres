@@ -1,8 +1,10 @@
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.WindowEvent;
+import java.awt.event.WindowListener;
 
 
-class TextArea extends JFrame {
+class TextArea extends JFrame implements WindowListener {
 
     TextArea(){
         initComponent();
@@ -11,7 +13,7 @@ class TextArea extends JFrame {
     private void initComponent() {
         this.setTitle("Teks searcher");
         this.setBounds(300,300,300,250);
-        this.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
+        this.setDefaultCloseOperation(WindowConstants.DO_NOTHING_ON_CLOSE);
         this.getContentPane().add(scrollPane, BorderLayout.NORTH);
         serchingPanel.add(find);
         serchingPanel.add(findThisText);
@@ -21,6 +23,7 @@ class TextArea extends JFrame {
         this.getContentPane().add(serchingPanel, BorderLayout.CENTER);
         this.getContentPane().add(swapPanel, BorderLayout.SOUTH);
         new ButtonHandler(find, swap);
+        this.addWindowListener(this);
 
 //        textArea.selectAll();
 //        textArea.select(0, 4);
@@ -40,6 +43,44 @@ class TextArea extends JFrame {
     private JLabel andLable = new JLabel("and");
     private JButton swap = new JButton("Swap");
     static JTextField swapTheText = new JTextField(10);
+
+    @Override
+    public void windowOpened(WindowEvent e) {
+        JOptionPane.showMessageDialog(rootPane, "Copy and paste some text to find and replace words");
+    }
+
+    @Override
+    public void windowClosing(WindowEvent e) {
+        int oprionOnClose = JOptionPane.showConfirmDialog(rootPane, "Are you shure?");
+        if(oprionOnClose==0){
+            this.dispose();
+        }
+    }
+
+    @Override
+    public void windowClosed(WindowEvent e) {
+        System.out.println("Saving data on server");
+    }
+
+    @Override
+    public void windowIconified(WindowEvent e) {
+        System.out.println("Minimalising");
+    }
+
+    @Override
+    public void windowDeiconified(WindowEvent e) {
+        System.out.println("Maximalisation");
+    }
+
+    @Override
+    public void windowActivated(WindowEvent e) {
+        System.out.println("Active");
+    }
+
+    @Override
+    public void windowDeactivated(WindowEvent e) {
+        System.out.println("Deactive");
+    }
 
 
 //    private class FindingHandler implements ActionListener {
