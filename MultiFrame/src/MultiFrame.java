@@ -12,15 +12,15 @@ public class MultiFrame extends JFrame {
         this.setTitle("MultiFrame");
         this.setBounds(xy,xy,300,200);
         this.getContentPane().add(panel);
-        this.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
+        this.setDefaultCloseOperation(WindowConstants.DISPOSE_ON_CLOSE);
         panel.add(newFrameButton);
         newFrameButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                new MakeNewFrame().setVisible(true);
+                new MakeNewFrame(MultiFrame.this).setVisible(true);
+                new DialogFrame().setVisible(true);
             }
         });
-
     }
 
     private JButton newFrameButton = new JButton("New Frame");
