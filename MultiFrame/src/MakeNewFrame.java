@@ -1,4 +1,5 @@
 import javax.swing.*;
+import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
@@ -14,16 +15,13 @@ public class MakeNewFrame  extends JFrame {
     private void initComponent() {
         this.setTitle("New Frame " + ++i);
         this.setBounds(MultiFrame.xy,MultiFrame.xy/3, 300,200);
-        this.getContentPane().add(panel);
+        this.getContentPane().add(panel, BorderLayout.NORTH);
+        this.getContentPane().add(panelDown, BorderLayout.SOUTH);
         this.setDefaultCloseOperation(WindowConstants.DISPOSE_ON_CLOSE);
         panel.add(closeButton);
         panel.add(quitProgramButton);
-        quitProgramButton.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                System.exit(0);
-            }
-        });
+        panelDown.add(slider, BorderLayout.SOUTH);
+        quitProgramButton.addActionListener(e -> System.exit(0));
         closeButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -37,4 +35,6 @@ public class MakeNewFrame  extends JFrame {
     private JButton closeButton = new JButton("Close");
     private JButton quitProgramButton = new JButton("Quit");
     private JPanel panel = new JPanel();
+    private JPanel panelDown = new JPanel();
+    private JSlider slider = new JSlider();
 }
