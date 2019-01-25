@@ -24,6 +24,15 @@ public class MultiFrame extends JFrame {
         JMenu menuColor = menuNewFrame.add(new JMenu("New Frame"));
         JMenu subMenuColor = new JMenu("Colors");
         menuColor.add(subMenuColor);
+        JMenuItem subMenuText = new JMenuItem("Text Area");
+        subMenuText.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                new MakeNewFrame(MultiFrame.this, textArea).setVisible(true);
+                new DialogFrame().setVisible(true);
+            }
+        });
+        menuColor.add(subMenuText);
         JMenuItem subMenuRed = subMenuColor.add("Red");
         JMenuItem subMenuGreen = subMenuColor.add("Green");
         JMenuItem subMenuBlue = subMenuColor.add("Blue");
@@ -68,4 +77,5 @@ public class MultiFrame extends JFrame {
     private JPanel panelEdge = new JPanel();
     private ButtonGroup buttonGroup = new ButtonGroup();
     private JMenuBar menuNewFrame = new JMenuBar();
+    private TextArea textArea = new TextArea("Text Area");
 }

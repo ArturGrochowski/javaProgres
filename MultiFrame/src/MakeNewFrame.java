@@ -25,6 +25,13 @@ public class MakeNewFrame  extends JFrame {
 
     }
 
+    public MakeNewFrame(JFrame parentFrame, TextArea textArea){
+        MultiFrame.xy+=70;
+        initComponent();
+        int width = parentFrame.getBounds().width; // or parentFrame.getWidth().
+        this.setSize(width, parentFrame.getHeight());
+    }
+
     private void initComponent() {
         this.setTitle("New Frame " + ++i);
         this.setBounds(MultiFrame.xy,MultiFrame.xy/3, 300,200);
