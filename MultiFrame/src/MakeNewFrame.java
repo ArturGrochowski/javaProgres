@@ -14,6 +14,17 @@ public class MakeNewFrame  extends JFrame {
         this.setSize(width, parentFrame.getHeight());
     }
 
+    public MakeNewFrame(JFrame parentFrame, Color color){
+        MultiFrame.xy+=70;
+        initComponent();
+        int width = parentFrame.getBounds().width; // or parentFrame.getWidth().
+        this.setSize(width, parentFrame.getHeight());
+        panel.setBackground(color);
+        panelDown.setBackground(color);
+        panelCentral.setBackground(color);
+
+    }
+
     private void initComponent() {
         this.setTitle("New Frame " + ++i);
         this.setBounds(MultiFrame.xy,MultiFrame.xy/3, 300,200);

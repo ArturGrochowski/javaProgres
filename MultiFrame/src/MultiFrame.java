@@ -20,6 +20,18 @@ public class MultiFrame extends JFrame {
         this.getContentPane().setLayout(new GridLayout(2,1));
         this.getContentPane().add(panel);
         this.getContentPane().add(panelEdge);
+        this.setJMenuBar(menuNewFrame);
+        JMenu menuColor = menuNewFrame.add(new JMenu("New Frame"));
+        JMenu subMenuColor = new JMenu("Colors");
+        menuColor.add(subMenuColor);
+        JMenuItem subMenuRed = subMenuColor.add("Red");
+        JMenuItem subMenuGreen = subMenuColor.add("Green");
+        JMenuItem subMenuBlue = subMenuColor.add("Blue");
+        JMenuItem subMenuOrange = subMenuColor.add("Orange");
+        newColorFrame(subMenuRed, Color.red);
+        newColorFrame(subMenuGreen, Color.green);
+        newColorFrame(subMenuBlue, Color.blue);
+        newColorFrame(subMenuOrange, Color.orange);
         this.setDefaultCloseOperation(WindowConstants.DISPOSE_ON_CLOSE);
         panel.add(newFrameButton);
         panel.setBorder(createTitledBorder(BorderFactory.createBevelBorder(BevelBorder.RAISED), "Creator", TitledBorder.CENTER, TitledBorder.TOP));
@@ -29,6 +41,16 @@ public class MultiFrame extends JFrame {
             @Override
             public void actionPerformed(ActionEvent e) {
                 new MakeNewFrame(MultiFrame.this).setVisible(true);
+                new DialogFrame().setVisible(true);
+            }
+        });
+    }
+
+    public void newColorFrame (JMenuItem subMenuColor, Color color){
+        subMenuColor.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                new MakeNewFrame(MultiFrame.this, color).setVisible(true);
                 new DialogFrame().setVisible(true);
             }
         });
@@ -45,4 +67,5 @@ public class MultiFrame extends JFrame {
     private JPanel panel = new JPanel();
     private JPanel panelEdge = new JPanel();
     private ButtonGroup buttonGroup = new ButtonGroup();
+    private JMenuBar menuNewFrame = new JMenuBar();
 }
