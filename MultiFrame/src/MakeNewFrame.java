@@ -6,6 +6,8 @@ import javax.swing.event.ChangeListener;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.KeyAdapter;
+import java.awt.event.KeyEvent;
 
 public class MakeNewFrame  extends JFrame {
 
@@ -34,14 +36,64 @@ public class MakeNewFrame  extends JFrame {
     and create new window with text area*/
     public MakeNewFrame(JFrame parentFrame, JTextArea textArea){
         MultiFrame.xy+=70;
+        JMenuBar menuBar = new JMenuBar();
+        Action actionSave = new ActionSave("Save");
+        JCheckBoxMenuItem readOnly = new JCheckBoxMenuItem("read only");
+        JMenuItem save = new JMenuItem(actionSave);
+        JMenuItem read = new JMenuItem("Read");
+        JButton saveButton = new JButton(actionSave);
         initComponent();
+        panel.add(saveButton);
+        actionSave.setEnabled(false);
+        save.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                System.out.println("Saving on your drive");
+                actionSave.setEnabled(flagTextArea=false);
+            }
+        });
+        save.setToolTipText("Saving the file on your drive");
+        save.setMnemonic('s');
+        save.setAccelerator(KeyStroke.getKeyStroke("ctrl s"));
         int width = parentFrame.getBounds().width; // or parentFrame.getWidth().
         this.setSize(width, parentFrame.getHeight());
         this.getContentPane().add(textArea);
         this.setJMenuBar(menuBar);
         JMenu menuFile = menuBar.add(new JMenu("File"));
-        JMenuItem subMenuNew = menuFile.add(new JMenuItem("New file"));
+        JMenuItem subMenuNew = menuFile.add("New file");
         subMenuNew.addActionListener(e -> MultiFrame.subMenuText.doClick());
+        menuFile.addSeparator();
+        menuFile.add(save);
+        menuFile.add(read);
+        menuFile.addSeparator();
+        menuFile.add(readOnly);
+        readOnly.addActionListener(e -> {
+            if(readOnly.isSelected()){
+                actionSave.setEnabled(false);
+            } else {
+                actionSave.setEnabled(flagTextArea);
+            }
+        });
+        textArea.addKeyListener(new KeyAdapter() {
+            @Override
+            public void keyTyped(KeyEvent e) {
+                super.keyTyped(e);
+                if(readOnly.isSelected()){
+                    e.consume();
+                }
+            }
+
+            @Override
+            public void keyPressed(KeyEvent e) {
+                super.keyPressed(e);
+                if(readOnly.isSelected()){
+                    e.consume();
+                } else if (!(textArea.getText() + e.getKeyChar()).equals(beforEdtitingTextArea)) {
+                    beforEdtitingTextArea = textArea.getText()+ e.getKeyChar();
+                    actionSave.setEnabled(flagTextArea=true);
+                }
+            }
+        });
     }
 /* this method create slider at the bottom of the frame to change background color of the frame*/
     private void sliderComponent(){
@@ -80,6 +132,19 @@ public class MakeNewFrame  extends JFrame {
         });
 
     }
+
+    private class ActionSave extends AbstractAction{
+
+        public ActionSave(String name) {
+            this.putValue(Action.NAME, name);
+        }
+
+        @Override
+        public void actionPerformed(ActionEvent e) {
+            System.out.println("Saving on your drive");
+            this.setEnabled(flagTextArea=false);
+        }
+    }
 /*"static int i" is counting how many frames has been created by initComponent();*/
     static int i = 0;
     private JButton closeButton = new JButton("Close");
@@ -89,7 +154,7 @@ public class MakeNewFrame  extends JFrame {
     private JPanel panelDown = new JPanel();
     private JSlider slider = new JSlider(0, 999999999);
     private JTextField valueRGB = new JTextField("RGB = " + slider.getValue());
-    private JCheckBoxMenuItem readOnly = new JCheckBoxMenuItem("read only");
-    private JMenuBar menuBar = new JMenuBar();
+    private boolean flagTextArea = false;
+    private String beforEdtitingTextArea = "";
 
 }
