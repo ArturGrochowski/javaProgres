@@ -1,3 +1,6 @@
+/*This Class create main window with button to create other window
+* and 2 radio buttons to choos border style inside of this main frame
+ */
 import javax.swing.*;
 import javax.swing.border.BevelBorder;
 import javax.swing.border.Border;
@@ -9,11 +12,13 @@ import java.awt.event.ActionListener;
 import static javax.swing.BorderFactory.createTitledBorder;
 
 public class MultiFrame extends JFrame {
+    // this statinc int xy is to set location of new window (axis x, y)
     static int xy = 300;
+
     public MultiFrame(){
         initComponent();
     }
-
+/* All components (buttons, menu), location and size of the main frame */
     public void initComponent() {
         this.setTitle("MultiFrame");
         this.setBounds(xy,xy,300,200);
@@ -25,12 +30,11 @@ public class MultiFrame extends JFrame {
         JMenu subMenuColor = new JMenu("Colors");
         menuColor.add(subMenuColor);
         JMenuItem subMenuText = new JMenuItem("Text Area");
-        subMenuText.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                new MakeNewFrame(MultiFrame.this, textArea).setVisible(true);
-                new DialogFrame().setVisible(true);
-            }
+        /* This lambda replacing an anonymous class. "e" stands for "void actiomPerformed(ActionEvent e)" method.
+        * You can chceck how it looks like at the very bottom of this initComponent() method*/
+        subMenuText.addActionListener(e -> {
+            new MakeNewFrame(MultiFrame.this, textArea).setVisible(true);
+            new DialogFrame("You've created " + DialogFrame.y + " text frame(s)").setVisible(true);
         });
         menuColor.add(subMenuText);
         JMenuItem subMenuRed = subMenuColor.add("Red");
@@ -67,6 +71,7 @@ public class MultiFrame extends JFrame {
 
     public void addRadioButton (String name, Border border){
         JRadioButton radioButton = new JRadioButton(name);
+        /* "e" from lambda stands for "public void itemStateChanged(ItemEvent e)" method from anonymous class*/
         radioButton.addItemListener(e -> panelEdge.setBorder(createTitledBorder(border, name)));
         buttonGroup.add(radioButton);
         panelEdge.add(radioButton);
@@ -77,5 +82,5 @@ public class MultiFrame extends JFrame {
     private JPanel panelEdge = new JPanel();
     private ButtonGroup buttonGroup = new ButtonGroup();
     private JMenuBar menuNewFrame = new JMenuBar();
-    private TextArea textArea = new TextArea("Text Area");
+    private JTextArea textArea = new JTextArea("Text Area");
 }
