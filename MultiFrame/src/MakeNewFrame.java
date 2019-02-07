@@ -34,27 +34,28 @@ public class MakeNewFrame  extends JFrame {
 
     /*this constructor is coled from menu in main, parent frame (MultiFrame),
     and create new window with text area*/
-    public MakeNewFrame(JFrame parentFrame, JTextArea textArea){
+    public MakeNewFrame(JFrame parentFrame, String textAr){
+        JTextArea textArea = new JTextArea(textAr);
         MultiFrame.xy+=70;
         JMenuBar menuBar = new JMenuBar();
-        Action actionSave = new ActionSave("Save");
+        Action actionSave = new ActionSave("Save", "Save on drive", "ctrl s");
         JCheckBoxMenuItem readOnly = new JCheckBoxMenuItem("read only");
         JMenuItem save = new JMenuItem(actionSave);
         JMenuItem read = new JMenuItem("Read");
         JButton saveButton = new JButton(actionSave);
         initComponent();
+//        textArea.setText("");
         panel.add(saveButton);
         actionSave.setEnabled(false);
-        save.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                System.out.println("Saving on your drive");
-                actionSave.setEnabled(flagTextArea=false);
-            }
-        });
-        save.setToolTipText("Saving the file on your drive");
-        save.setMnemonic('s');
-        save.setAccelerator(KeyStroke.getKeyStroke("ctrl s"));
+        /*this pice of code was replaced by code inside inner class ActionSave
+        * */
+//        save.addActionListener(e -> {
+//            System.out.println("Saving on your drive");
+//            actionSave.setEnabled(flagTextArea=false);
+//        });
+//        save.setToolTipText("Saving the file on your drive");
+//        save.setMnemonic('s');
+//        save.setAccelerator(KeyStroke.getKeyStroke("ctrl s"));
         int width = parentFrame.getBounds().width; // or parentFrame.getWidth().
         this.setSize(width, parentFrame.getHeight());
         this.getContentPane().add(textArea);
@@ -102,15 +103,12 @@ public class MakeNewFrame  extends JFrame {
         panelDown.add(slider, BorderLayout.SOUTH);
         valueRGB.setEditable(false);
         slider.setSnapToTicks(true);
-        slider.addChangeListener(new ChangeListener() {
-            @Override
-            public void stateChanged(ChangeEvent e) {
-                valueRGB.setText("RGB = "+ ((JSlider)e.getSource()).getValue());
-                Color c = new Color(((JSlider)e.getSource()).getValue());
-                panel.setBackground(c);
-                panelCentral.setBackground(c);
-                panelDown.setBackground(c);
-            }
+        slider.addChangeListener(e -> {
+            valueRGB.setText("RGB = "+ ((JSlider)e.getSource()).getValue());
+            Color c = new Color(((JSlider)e.getSource()).getValue());
+            panel.setBackground(c);
+            panelCentral.setBackground(c);
+            panelDown.setBackground(c);
         });
     }
 /*this method create new frame, set size, location and add buttons*/
@@ -135,8 +133,10 @@ public class MakeNewFrame  extends JFrame {
 
     private class ActionSave extends AbstractAction{
 
-        public ActionSave(String name) {
+        public ActionSave(String name, String hint, String shortCut) {
             this.putValue(Action.NAME, name);
+            this.putValue(Action.SHORT_DESCRIPTION, hint);
+            this.putValue(Action.ACCELERATOR_KEY, KeyStroke.getKeyStroke(shortCut));
         }
 
         @Override

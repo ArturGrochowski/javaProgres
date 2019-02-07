@@ -32,7 +32,7 @@ public class MultiFrame extends JFrame {
         /* This lambda replacing an anonymous class. "e" stands for "void actiomPerformed(ActionEvent e)" method.
         * You can chceck how it looks like at the very bottom of this initComponent() method*/
         subMenuText.addActionListener(e -> {
-            new MakeNewFrame(MultiFrame.this, textArea).setVisible(true);
+            new MakeNewFrame(MultiFrame.this, textAr).setVisible(true);
             DialogFrame.y++;
             if(isActive()) {
                 new DialogFrame("You've created " + DialogFrame.y + " text frame(s)").setVisible(true);
@@ -86,5 +86,5 @@ public class MultiFrame extends JFrame {
     private ButtonGroup buttonGroup = new ButtonGroup();
     private JMenuBar menuNewFrame = new JMenuBar();
     static JMenuItem subMenuText = new JMenuItem("Text Area");
-    private JTextArea textArea = new JTextArea("Text Area");
+    private String textAr = "Text Area";
 }
