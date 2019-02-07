@@ -38,7 +38,10 @@ public class MakeNewFrame  extends JFrame {
         int width = parentFrame.getBounds().width; // or parentFrame.getWidth().
         this.setSize(width, parentFrame.getHeight());
         this.getContentPane().add(textArea);
-
+        this.setJMenuBar(menuBar);
+        JMenu menuFile = menuBar.add(new JMenu("File"));
+        JMenuItem subMenuNew = menuFile.add(new JMenuItem("New file"));
+        subMenuNew.addActionListener(e -> MultiFrame.subMenuText.doClick());
     }
 /* this method create slider at the bottom of the frame to change background color of the frame*/
     private void sliderComponent(){
@@ -86,4 +89,7 @@ public class MakeNewFrame  extends JFrame {
     private JPanel panelDown = new JPanel();
     private JSlider slider = new JSlider(0, 999999999);
     private JTextField valueRGB = new JTextField("RGB = " + slider.getValue());
+    private JCheckBoxMenuItem readOnly = new JCheckBoxMenuItem("read only");
+    private JMenuBar menuBar = new JMenuBar();
+
 }

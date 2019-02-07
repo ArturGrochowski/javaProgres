@@ -11,7 +11,7 @@ public class DialogFrame extends JDialog {
     }
 
     public DialogFrame(String text){
-        initTextComponent();
+        initComponent();
         lable.setText(text);
     }
 
@@ -29,13 +29,9 @@ public class DialogFrame extends JDialog {
             }
         });
     }
-/* this method create and count text areas frames*/
-    private void initTextComponent() {
-        y++;
-        initComponent();
-    }
+
 /*"static int y" is counting how many text area frames you've created by initTextComponent()*/
-    static int y = 1;
+    static int y = 0;
     private JButton closeButton = new JButton("OK");
     private JPanel panel = new JPanel();
     private JLabel lable = new JLabel("You've created " + MakeNewFrame.i + " new frame(s)");

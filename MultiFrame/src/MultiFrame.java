@@ -29,12 +29,14 @@ public class MultiFrame extends JFrame {
         JMenu menuColor = menuNewFrame.add(new JMenu("New Frame"));
         JMenu subMenuColor = new JMenu("Colors");
         menuColor.add(subMenuColor);
-        JMenuItem subMenuText = new JMenuItem("Text Area");
         /* This lambda replacing an anonymous class. "e" stands for "void actiomPerformed(ActionEvent e)" method.
         * You can chceck how it looks like at the very bottom of this initComponent() method*/
         subMenuText.addActionListener(e -> {
             new MakeNewFrame(MultiFrame.this, textArea).setVisible(true);
-            new DialogFrame("You've created " + DialogFrame.y + " text frame(s)").setVisible(true);
+            DialogFrame.y++;
+            if(isActive()) {
+                new DialogFrame("You've created " + DialogFrame.y + " text frame(s)").setVisible(true);
+            }
         });
         menuColor.add(subMenuText);
         JMenuItem subMenuRed = subMenuColor.add("Red");
@@ -57,6 +59,7 @@ public class MultiFrame extends JFrame {
                 new DialogFrame().setVisible(true);
             }
         });
+
     }
 
     public void newColorFrame (JMenuItem subMenuColor, Color color){
@@ -82,5 +85,6 @@ public class MultiFrame extends JFrame {
     private JPanel panelEdge = new JPanel();
     private ButtonGroup buttonGroup = new ButtonGroup();
     private JMenuBar menuNewFrame = new JMenuBar();
+    static JMenuItem subMenuText = new JMenuItem("Text Area");
     private JTextArea textArea = new JTextArea("Text Area");
 }
