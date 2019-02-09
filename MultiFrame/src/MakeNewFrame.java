@@ -1,8 +1,6 @@
 /*This class create new frame base on size and loctation of parent frame (MultiFrame) */
 
 import javax.swing.*;
-import javax.swing.event.ChangeEvent;
-import javax.swing.event.ChangeListener;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
