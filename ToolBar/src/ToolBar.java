@@ -1,10 +1,16 @@
 import javax.swing.*;
+import javax.swing.event.ListSelectionEvent;
+import javax.swing.event.ListSelectionListener;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
+import java.util.function.Consumer;
 
- class ToolBar extends JFrame {
+class ToolBar extends JFrame {
     ToolBar() {
         initComponent();
     }
@@ -15,19 +21,47 @@ import java.awt.event.MouseEvent;
         this.setTitle("Tool Bar");
         this.setBounds(300, 300, 500, 300);
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        this.getContentPane().setLayout(new GridLayout(2, 1));
+        this.getContentPane().setLayout(new GridLayout(4, 1));
         this.getContentPane().add(toolBar);
         this.getContentPane().add(panel);
+        this.getContentPane().add(lablePanel);
+        this.getContentPane().add(scrolList);
 
         toolBar.add(new ColorButton(new ActionColor("Change color for blue", new ImageIcon("C:\\Users\\ARTUR\\IdeaProjects\\javaProgress\\ToolBar\\BLUE.png"), Color.BLUE)));
         toolBar.add(new ColorButton(new ActionColor("Change color for red", new ImageIcon("C:\\Users\\ARTUR\\IdeaProjects\\javaProgress\\ToolBar\\RED.png"), Color.RED)));
         toolBar.add(new ColorButton(new ActionColor("Change color for yellow", new ImageIcon("C:\\Users\\ARTUR\\IdeaProjects\\javaProgress\\ToolBar\\YELLOW.png"), Color.YELLOW)));
         toolBar.add(new ColorButton(new ActionColor("Change color for violet", new ImageIcon("C:\\Users\\ARTUR\\IdeaProjects\\javaProgress\\ToolBar\\VIOLET.png"), Color.MAGENTA)));
         toolBar.add(buttonColorOff);
+        lablePanel.add(choosenLesson);
+        itemList.addListSelectionListener(e -> {
+            if(!e.getValueIsAdjusting()){
+                String tmp = "";
+
+                modelList.removeAllElements();
+               List<String> list = (List<String>)((JList)e.getSource()).getSelectedValuesList();
+               for(Object o : list){
+                   modelList.addElement((String) o);
+                   tmp = modelList.toString();
+                   tmp = tmp.substring(1, tmp.length()-1);
+               }
+
+//                Object[] lessonsList = ((ArrayList) ((JList) e.getSource()).getSelectedValuesList()).toArray();
+//                for (Object o : (((JList) e.getSource()).getSelectedValuesList()).toArray()) {
+//                    /* This part with JList is was replaced by cod below with DefaultListModel wich give .addElement(); method
+//                     * */
+////                    tmp += "    " + (String) lessonsList[i];
+//                    modelList.addElement((String) o);
+//                }
+                choosenLesson.setText(tmp);
+
+            }
+        });
 
         buttonColorOff.addActionListener(e -> {
             panel.setCursor(new Cursor(Cursor.DEFAULT_CURSOR));
             panel.setBackground(UIManager.getColor ( "Panel.background" ));
+            itemList.setBackground(UIManager.getColor ( "Panel.background" ));
+            lablePanel.setBackground(UIManager.getColor ( "Panel.background" ));
             colorButton = null;
         });
 
@@ -36,15 +70,21 @@ import java.awt.event.MouseEvent;
             public void mousePressed(MouseEvent e) {
                 if (colorButton != null){
                     panel.setBackground((Color) colorButton.getAction().getValue("Color"));
-//                panel.setBackground(Color.red);
+                    itemList.setBackground((Color) colorButton.getAction().getValue("Color"));
+                    lablePanel.setBackground((Color) colorButton.getAction().getValue("Color"));
                 }
             }
         });
     }
     private JPanel panel = new JPanel();
     private ColorButton colorButton = null;
+    private JList<String> itemList = new JList<>(new String[]{"MATH", "IT", "PHYSICS", "CHEMISTRY", "BIOLOGY", "HISTORY", "ART", "MUSIC", "GEOGRAPHY", "ENGLISH", "POLISH", "PE" });
+    private DefaultListModel<String> modelList = new DefaultListModel<>();
+    private JScrollPane scrolList = new JScrollPane(itemList);
+    private JLabel choosenLesson = new JLabel();
+    private JPanel lablePanel = new JPanel();
 
-     // ActionColor clas define how all buttons work
+     // ActionColor class define how all buttons work
     public class ActionColor extends AbstractAction {
 
         private ActionColor(String toolTip, Icon icon, Color color) {
