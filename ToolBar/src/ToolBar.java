@@ -1,14 +1,12 @@
 import javax.swing.*;
-import javax.swing.event.ListSelectionEvent;
-import javax.swing.event.ListSelectionListener;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
-import java.util.ArrayList;
-import java.util.Arrays;
+import java.text.DateFormatSymbols;
+import java.util.Calendar;
+import java.util.Date;
 import java.util.List;
-import java.util.function.Consumer;
 
 class ToolBar extends JFrame {
     ToolBar() {
@@ -19,13 +17,31 @@ class ToolBar extends JFrame {
 
      private void initComponent(){
         this.setTitle("Tool Bar");
-        this.setBounds(300, 300, 500, 300);
+        this.setBounds(300, 300, 400, 300);
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         this.getContentPane().setLayout(new GridLayout(4, 1));
         this.getContentPane().add(toolBar);
         this.getContentPane().add(panel);
         this.getContentPane().add(lablePanel);
         this.getContentPane().add(scrolList);
+        String[] months = new DateFormatSymbols().getMonths();
+        MySpinnerListModel monthModel = new MySpinnerListModel(cutArray(months, 0, 11));
+        JSpinner spinner = new JSpinner(monthModel);
+//        spinner.setEditor(new JTextArea("Wird example"));
+        SpinnerNumberModel numberModel = new SpinnerNumberModel(1, 1, 5, 2);
+        JSpinner spinner2 = new JSpinner(numberModel);
+        Calendar calendar = Calendar.getInstance();
+        Date startDate = calendar.getTime();
+        calendar.add(Calendar.DAY_OF_MONTH, -20);
+        Date minDate = calendar.getTime();
+        calendar.add(Calendar.DAY_OF_MONTH, 40);
+        Date maxDate = calendar.getTime();
+        SpinnerDateModel spinnerDateModel = new SpinnerDateModel(startDate, minDate, maxDate, Calendar.DAY_OF_MONTH);
+        JSpinner spinner3 = new JSpinner(spinnerDateModel);
+
+        panel.add(spinner);
+        panel.add(spinner2);
+        panel.add(spinner3);
 
         toolBar.add(new ColorButton(new ActionColor("Change color for blue", new ImageIcon("C:\\Users\\ARTUR\\IdeaProjects\\javaProgress\\ToolBar\\BLUE.png"), Color.BLUE)));
         toolBar.add(new ColorButton(new ActionColor("Change color for red", new ImageIcon("C:\\Users\\ARTUR\\IdeaProjects\\javaProgress\\ToolBar\\RED.png"), Color.RED)));
@@ -35,16 +51,18 @@ class ToolBar extends JFrame {
         lablePanel.add(choosenLesson);
         itemList.addListSelectionListener(e -> {
             if(!e.getValueIsAdjusting()){
-                String tmp = "";
-
                 modelList.removeAllElements();
-               List<String> list = (List<String>)((JList)e.getSource()).getSelectedValuesList();
+                String tmp = "";
+                List<String> list = ((JList<String>)e.getSource()).getSelectedValuesList();
+
                for(Object o : list){
                    modelList.addElement((String) o);
                    tmp = modelList.toString();
                    tmp = tmp.substring(1, tmp.length()-1);
                }
-
+/*
+*       This part of code with Object[] lessonsList was replaced by code obove with List<String> List
+* */
 //                Object[] lessonsList = ((ArrayList) ((JList) e.getSource()).getSelectedValuesList()).toArray();
 //                for (Object o : (((JList) e.getSource()).getSelectedValuesList()).toArray()) {
 //                    /* This part with JList is was replaced by cod below with DefaultListModel wich give .addElement(); method
@@ -56,7 +74,9 @@ class ToolBar extends JFrame {
 
             }
         });
-
+/*
+*    buttonColorOff ActionListener seting backgrund color for default color of the frame / Panel.
+* */
         buttonColorOff.addActionListener(e -> {
             panel.setCursor(new Cursor(Cursor.DEFAULT_CURSOR));
             panel.setBackground(UIManager.getColor ( "Panel.background" ));
@@ -129,4 +149,26 @@ class ToolBar extends JFrame {
     }
 
     private JToolBar toolBar = new JToolBar("New Frame");
+
+    /**
+     * is cutting array form <code>first</code> to <code>end</code>
+     * @param array Object with gonna by cutted
+     * @param first index where cutter is starting
+     * @param end index where cutter is ending
+     * @return shorter Object (tmp)
+     */
+    public Object[] cutArray(Object[] array, int first, int end){
+
+        // almost like try{}Catch{} ;)  just in case @param end would by bigger then size of array
+        end = end > array.length-1 || end < 0 ? array.length-1 : end;
+        first = first < 0 || first > end ? 0 : first;
+
+        Object[] tmp = new Object[end+1-first];
+
+        for(int i = first, j = 0; i <= end ; i++, j++){
+             tmp[j] = array[i];
+        }
+
+        return tmp;
+    }
 }
