@@ -1,6 +1,11 @@
 import java.io.File;
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Date;
+import java.util.List;
+import java.util.function.Predicate;
+import java.util.stream.Collectors;
 
 public class MainFile {
     public static void main(String[] args) {
@@ -56,6 +61,28 @@ public class MainFile {
 ////        getContent(new File(System.getProperty("user.dir")));
         getContent(new File("ToolBar"));
         System.out.println("-----------------------------------");
+
+        List<Flat> flatList = Arrays.asList(new Flat("London", "Chelsea", "King's Road", 3, 80, false, 2500000),
+                                             new Flat("Szczecin", "Warszewo", "Miodowa", 6, 230, true, 1500000),
+                                             new Flat("Szczecin", "Warszewo", "Duńska", 5, 190, true, 1300000),
+                                            new Flat("Warsaw", "Srodmiescie", "Wojska polskigo", 2, 50, true, 900000),
+                                             new Flat("Wroclaw", "Pie Pole", "Chopina", 3, 110, true, 800000)
+        );
+
+        flatList.stream()
+                .filter(flat -> flat.getCity().equals("Szczecin"))
+                .filter(flat -> flat.getRooms() > 2)
+                .filter(flat -> flat.getPrice() < 3000000)
+                .map(flat -> flat.getCity() + " " + flat.getRooms() + " " + flat.getStreet()
+                        + " " + flat.getArea() + " " + flat.getRooms() + " " + flat.getPrice())
+                .forEach(System.out::println);
+
+        Predicate<Flat> flatCity = flat -> flat.getCity().equals("London");
+        List<Flat> listOfFlats = flatList.stream()
+                .filter(flatCity)
+                .collect(Collectors.toList());
+        System.out.println(listOfFlats);
+
     }
     static void getPath(File file){
         System.out.println(file.getPath());
