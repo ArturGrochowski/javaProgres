@@ -9,8 +9,8 @@ public class MainSynchroThread {
         Thread thread1 = new Thread(printing, "Thread 1");
         Thread thread2 = new Thread(printing, "Thread 2");
 
-        thread2.start();
         thread1.start();
+        thread2.start();
 
         try {
             thread1.join();
