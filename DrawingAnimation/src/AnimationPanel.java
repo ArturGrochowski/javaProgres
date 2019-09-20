@@ -4,6 +4,9 @@ import java.util.ArrayList;
 
 public class AnimationPanel extends JPanel {
 
+    private static volatile boolean paused = false;
+    private static final Object lock = new Object();
+
     public void addItemToAnime() {
 
 
@@ -11,7 +14,21 @@ public class AnimationPanel extends JPanel {
         thread = new Thread(threadGroup, new ItemRunnable((ItemToAnime) itemsList.get(itemsList.size()-1)) );
         thread.start();
         threadGroup.list();
+        isListEmpty();
 
+    }
+
+    public static void pauseAnimation(){
+        paused = true;
+    }
+
+    public static void resumeAnimation(){
+        if(paused){
+            paused = false;
+            synchronized (lock){
+                lock.notifyAll();
+            }
+        }
     }
 
     public void paintComponent (Graphics graphics){
@@ -25,6 +42,14 @@ public class AnimationPanel extends JPanel {
     JPanel thisPannel = this;
     Thread thread;
     ThreadGroup threadGroup = new ThreadGroup("Group of animedItems");
+    static boolean ISlistEMPTY;
+
+    public void isListEmpty(){
+        if (itemsList.size() == 0)
+            ISlistEMPTY = true;
+
+        ISlistEMPTY = false;
+    }
 
     public void removeAnimedItem() {
         threadGroup.interrupt();
@@ -39,20 +64,42 @@ public class AnimationPanel extends JPanel {
         @Override
         public void run() {
 
-            try {
-                while (!Thread.currentThread().isInterrupted()){
-
-                    this.itemToAnime.moveItem(thisPannel);
-                    repaint(); // this.paint(this.getGraphics());
-
-                        Thread.sleep(1);
-
+            while(true){
+                synchronized (lock){
+                    while (paused){
+                        try {
+                            lock.wait();
+                        } catch (InterruptedException e) {
+                            e.printStackTrace();
+                        }
+                    }
                 }
-            } catch (InterruptedException e) {
-                System.out.println(e.getMessage());
-                itemsList.clear();
+                this.itemToAnime.moveItem(thisPannel);
                 repaint();
+                try{
+                    Thread.sleep(10);
+                } catch (InterruptedException e) {
+                    System.out.println(e.getMessage());
+                    itemsList.clear();
+                    repaint();
+                }
             }
+
+//            try {
+//                while (!Thread.currentThread().isInterrupted()){
+//                    isListEmpty();
+//
+//                    this.itemToAnime.moveItem(thisPannel);
+//                    repaint(); // this.paint(this.getGraphics());
+//
+//                        Thread.sleep(1);
+//
+//                }
+//            } catch (InterruptedException e) {
+//                System.out.println(e.getMessage());
+//                itemsList.clear();
+//                repaint();
+//            }
         }
         ItemToAnime itemToAnime;
     }

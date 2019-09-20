@@ -5,34 +5,53 @@ import java.awt.event.ActionListener;
 
 public class MainAnimation extends JFrame {
 
+    JButton startButton = new JButton("Start");
+    JButton pauseButton = new JButton("Pause");
+    JButton resumeButton = new JButton("Resume");
+
 
     public MainAnimation(){
         this.setTitle("Animatino");
         this.setBounds(250,300,500,400);
         animationPanel.setBackground(Color.GRAY);
-        JButton startButton = (JButton) buttonsPanel.add(new JButton("Start"));
+
+        buttonsPanel.add(startButton);
         startButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                startAnimation();
+                    startAnimation();
             }
         });
 
         JButton removeButton = (JButton) buttonsPanel.add(new JButton("Remove"));
-        removeButton.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                stopAnimation();
-            }
-        });
-
+        buttonsPanel.add(pauseButton);
+        removeButton.addActionListener(e -> removeAnimation());
+        pauseButton.addActionListener(e -> pauseAnimation());
+        resumeButton.addActionListener(e -> resumeAnimation());
 
         this.getContentPane().add(animationPanel);
         this.getContentPane().add(buttonsPanel, BorderLayout.SOUTH);
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
     }
 
-    private void stopAnimation() {
+    private void pauseAnimation() {
+        buttonsPanel.remove(pauseButton);
+        buttonsPanel.add(resumeButton);
+        buttonsPanel.revalidate();
+        buttonsPanel.repaint();
+        AnimationPanel.pauseAnimation();
+    }
+
+    private void resumeAnimation(){
+        buttonsPanel.remove(resumeButton);
+        buttonsPanel.add(pauseButton);
+        buttonsPanel.revalidate();
+        buttonsPanel.repaint();
+        AnimationPanel.resumeAnimation();
+    }
+
+    private void removeAnimation() {
+
         animationPanel.removeAnimedItem();
     }
 
