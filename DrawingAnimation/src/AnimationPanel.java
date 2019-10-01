@@ -9,13 +9,11 @@ public class AnimationPanel extends JPanel {
 
     public void addItemToAnime() {
 
-
         itemsList.add(new ItemToAnime());
         thread = new Thread(threadGroup, new ItemRunnable((ItemToAnime) itemsList.get(itemsList.size()-1)) );
         thread.start();
         threadGroup.list();
         isListEmpty();
-
     }
 
     public static void pauseAnimation(){
@@ -51,7 +49,9 @@ public class AnimationPanel extends JPanel {
         ISlistEMPTY = false;
     }
 
-    public void removeAnimedItem() {
+    public void removeAnimedItem()
+    {
+        resumeAnimation();
         threadGroup.interrupt();
     }
 
@@ -71,6 +71,7 @@ public class AnimationPanel extends JPanel {
                             lock.wait();
                         } catch (InterruptedException e) {
                             e.printStackTrace();
+                            System.out.println(e.getMessage());
                         }
                     }
                 }

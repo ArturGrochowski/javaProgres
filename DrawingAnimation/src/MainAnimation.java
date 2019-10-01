@@ -55,8 +55,10 @@ public class MainAnimation extends JFrame {
         animationPanel.removeAnimedItem();
     }
 
-    public void startAnimation() {
+    public void startAnimation()
+    {
         animationPanel.addItemToAnime();
+        resumeAnimation();
     }
 
     private JPanel buttonsPanel = new JPanel();
